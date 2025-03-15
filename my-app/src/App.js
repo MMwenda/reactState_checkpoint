@@ -23,6 +23,7 @@ class App extends React.Component{
     }, 1000);
   }
 
+  //TODO: clearInterval not working
   componentWillUnmount() { //runs when the component is removed
     clearInterval(this.timer);
   }
