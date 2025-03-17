@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap'
 import './App.css';
 
+//making it class-based
 class App extends React.Component{
   state = {
       Person: {
@@ -10,28 +11,27 @@ class App extends React.Component{
       imgSrc: "https://upload.wikimedia.org/wikipedia/commons/5/52/PierceBrosnanCannesPhoto2_b.jpg",
       profession: "Cold Blooded Cold Storage Worker",
     },
-     show: true,
+     show: false,
      timeElapsed:0
   };
-
-  componentDidMount(){ //runs once the component is first added to the page
-    this.timer =  //a reference to the timer
-    setInterval(() => { //runs a function every 1 second
-      this.setState(prevState => ({ //prevState is the previous state of the component
-        timeElapsed: prevState.timeElapsed + 1
-      }))
+   // start the timer when component is mounted
+   componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState(prevState => ({ timeElapsed: prevState.timeElapsed + 1 }));
     }, 1000);
   }
 
-  //TODO: clearInterval not working
-  componentWillUnmount() { //runs when the component is removed
+  // stop the timer when the component is unmounted
+  componentWillUnmount() {
     clearInterval(this.timer);
   }
 
-    //showProfile = () => this.state.show === false ? console.log(null): console.log(this.state.Person);
-   showProfile = () => this.state.show === false ? this.setState({show: true}) : this.setState({show: false});  
-   
-  render() {
+  //toggle profile visibility without managing the timer
+  showProfile = () => {
+    this.setState(prevState => ({ show: !prevState.show, timeElapsed: 0 }));
+  };
+  
+  render() { //render(), always used in class components
     return (
       <div className='text-center'>
         <button onClick={this.showProfile} className='border-warning rounded'>
@@ -40,6 +40,7 @@ class App extends React.Component{
 
         <p>Time elapsed since mount: {this.state.timeElapsed} seconds</p>
 
+        {/* if it is true display the card*/}
         {this.state.show && (
           <div className="d-flex justify-content-center mt-2"> {/*centers the card*/}
           <Card className="text-center w-25 p-3 border-warning border-4 bg-warning-subtle">

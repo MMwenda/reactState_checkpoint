@@ -1,9 +1,7 @@
+## React Profile Timer
+- This React app displays a profile card with a toggle button to show or hide a person's details. 
+- It also tracks how long the profile has been visible using setInterval(), updating the time every second. - - The app is built using class components and lifecycle methods
 
-
-Instructions:
-1. Create a project using create-react-app.
-2. Transform the App.js into a class-based component.
-3. Implement a state for this class containing a Person ={ fullName,bio, imgSrc, profession} and a boolean shows.
-4. Add a button that toggles the show state. When the show state is true, the person's profile will appear.
-5. Create a field that shows the time interval since the last component was mounted using the component lifecycle.
-Hint: use the setInterval method.
+# Technologies used
+- `React`
+- `React Bootstrap`
